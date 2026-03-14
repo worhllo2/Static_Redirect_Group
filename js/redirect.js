@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const config = window.REDIRECT_CONFIG || {};
     const rulesIntermediate = window.RULES_INTERMEDIATE || {};
     const rulesDirect = window.RULES_DIRECT || {};
-    const fallbackBase = config.fallback || "https://note.142588.xyz";
+    const fallbackBase = config.fallback || "https://blog.142588.xyz";
 
     // 获取当前路径
     const path = window.location.pathname;
