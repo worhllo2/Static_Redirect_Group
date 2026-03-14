@@ -48,27 +48,33 @@ document.addEventListener('DOMContentLoaded', function() {
     let mode = 'fallback'; // direct, intermediate, fallback
     let ruleData = null;
 
-    // 只要规则存在且未过期，就视为命中
+    // 尝试从 Direct 规则中查找
     if (rulesDirect[lookupPath]) {
-        ruleData = getRuleData(rulesDirect[lookupPath]);
-        if (ruleData && !isExpired(ruleData)) {
-            target = ruleData.url;
-            // 如果包含多个 URL，强制进入中转页模式
-            mode = (ruleData.urls && Array.isArray(ruleData.urls)) ? 'intermediate' : 'direct';
+        const data = getRuleData(rulesDirect[lookupPath]);
+        if (data && !isExpired(data)) {
+            ruleData = data;
+            target = data.url || (data.urls && data.urls.length > 0 ? data.urls[0].url : null);
+            // 如果包含多个 URL，或者明确标记了 title，或者没有 target (只有 urls)，进入中转页模式
+            if ((data.urls && Array.isArray(data.urls)) || data.title) {
+                mode = 'intermediate';
+            } else {
+                mode = 'direct';
+            }
         }
     } 
     
     // 如果没有命中 Direct 规则，继续检查 Intermediate
-    if (!target && rulesIntermediate[lookupPath]) {
-        ruleData = getRuleData(rulesIntermediate[lookupPath]);
-        if (ruleData && !isExpired(ruleData)) {
-            target = ruleData.url;
+    if (!ruleData && rulesIntermediate[lookupPath]) {
+        const data = getRuleData(rulesIntermediate[lookupPath]);
+        if (data && !isExpired(data)) {
+            ruleData = data;
+            target = data.url || (data.urls && data.urls.length > 0 ? data.urls[0].url : null);
             mode = 'intermediate';
         }
     }
     
-    // 如果仍然没有目标，使用 Fallback
-    if (!target) {
+    // 如果仍然没有目标规则，使用 Fallback
+    if (!ruleData) {
         // Fallback
         let base = fallbackBase;
         if (base.endsWith('/') && path.startsWith('/')) {

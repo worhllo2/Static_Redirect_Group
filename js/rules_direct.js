@@ -14,11 +14,15 @@ window.RULES_DIRECT = {
     },
 
     // === AI 服务 ===
-    "/tset": {
+    "/ai": {
         "title": "选择 AI 服务",
         "urls": [
-            { "name": "AI Example 1", "url": "https://ai.example1.com" },
-            { "name": "AI Example 2", "url": "https://ai.example.cn" }
+            { "name": "对话 Chat AI", "url": "https://chat.142588.xyz" },
+            { "name": "综合 AI 服务", "url": "https://ai.142588.xyz" },
+            { "name": "视频 AI", "url": "https://videoai.142588.xyz" },
+            { "name": "图像 AI (主)", "url": "https://imageai.142588.xyz" },
+            { "name": "图像 AI (备)", "url": "https://text2img.fafu.indevs.in" },
+            { "name": "文本转语音 TTS", "url": "https://tts.142587.de5.net" }
         ],
         "expired_at": ""
     },
@@ -48,6 +52,18 @@ window.RULES_DIRECT = {
     },
 
     // === 开发工具与代理 ===
+    "/p": {
+        "title": "选择代理/订阅服务",
+        "urls": [
+            { "name": "网页代理", "url": "https://edit.142588.xyz" },
+            { "name": "Clash 订阅", "url": "https://clash.142588.xyz" },
+            { "name": "通用订阅转换", "url": "https://tunsub.142588.xyz" },
+            { "name": "CF 节点", "url": "https://cfnode.142588.xyz" },
+            { "name": "备用订阅 1", "url": "https://sub.142587.de5.net" },
+            { "name": "备用订阅 2", "url": "https://sub.cro.cc.cd" }
+        ],
+        "expired_at": ""
+    },
     "/github": {
         "url": "https://gh.142588.xyz",
         "expired_at": ""
