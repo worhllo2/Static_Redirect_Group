@@ -14,7 +14,7 @@ window.RULES_DIRECT = {
     },
 
     // === AI 服务 ===
-    "/ai": {
+    "/tset": {
         "title": "选择 AI 服务",
         "urls": [
             { "name": "AI Example 1", "url": "https://ai.example1.com" },
