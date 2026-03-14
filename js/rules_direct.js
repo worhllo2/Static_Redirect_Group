@@ -1,7 +1,7 @@
 window.RULES_DIRECT = {
     // === 基础与入口 ===
     "/": {
-        "url": "https://note.142588.xyz",
+        "url": "https://blog.142588.xyz",
         "expired_at": ""
     },
     "/home": {
