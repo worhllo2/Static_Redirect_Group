@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const config = window.REDIRECT_CONFIG || {};
     const rulesIntermediate = window.RULES_INTERMEDIATE || {};
     const rulesDirect = window.RULES_DIRECT || {};
-    const fallbackBase = config.fallback || "https://blog.acofork.com";
+    const fallbackBase = config.fallback || "https://note.142588.xyz";
 
     // 获取当前路径
     const path = window.location.pathname;
@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
         ruleData = getRuleData(rulesDirect[lookupPath]);
         if (ruleData && !isExpired(ruleData)) {
             target = ruleData.url;
-            mode = 'direct';
+            // 如果包含多个 URL，强制进入中转页模式
+            mode = (ruleData.urls && Array.isArray(ruleData.urls)) ? 'intermediate' : 'direct';
         }
     } 
     
@@ -106,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (checkUrl.protocol !== 'http:' && checkUrl.protocol !== 'https:') {
             console.error("Blocked potentially unsafe redirect:", finalUrl);
             // 降级到安全页面或显示错误
-            finalUrl = "https://blog.acofork.com/404"; 
+            finalUrl = "https://note.142588.xyz/404"; 
             if (document.getElementById('url-display')) {
                 document.getElementById('url-display').textContent = "Blocked unsafe URL";
             }
@@ -138,23 +139,59 @@ document.addEventListener('DOMContentLoaded', function() {
         const urlDisplay = document.getElementById('url-display');
         const redirectLink = document.getElementById('redirect-link');
         const card = document.querySelector('.card');
+        const titleElement = document.querySelector('.card h2');
 
         // 显示卡片 (如果有 hidden 类的话，这里可以移除)
         if (card) card.style.display = 'block';
 
+        if (ruleData.title && titleElement) {
+            titleElement.textContent = ruleData.title;
+        }
+
         if (urlDisplay) {
-            urlDisplay.textContent = finalUrl;
+            urlDisplay.textContent = ruleData.urls ? "请选择以下链接访问" : finalUrl;
         }
 
         if (redirectLink) {
-            // 确保是安全协议才设置 href
-            if (target !== null) {
-                redirectLink.href = finalUrl;
+            const buttonContainer = document.getElementById('button-container') || redirectLink.parentNode;
+            
+            if (ruleData.urls && Array.isArray(ruleData.urls)) {
+                // 如果有多个 URL，隐藏原始按钮并创建新按钮
+                redirectLink.style.display = 'none';
+                
+                ruleData.urls.forEach(item => {
+                    const btn = document.createElement('a');
+                    btn.className = 'btn';
+                    btn.style.marginBottom = '0.5rem';
+                    btn.textContent = item.name || item.url;
+                    
+                    try {
+                        const checkUrl = new URL(item.url, window.location.origin);
+                        if (checkUrl.protocol === 'http:' || checkUrl.protocol === 'https:') {
+                            btn.href = item.url;
+                        } else {
+                            btn.style.pointerEvents = 'none';
+                            btn.style.opacity = '0.5';
+                            btn.textContent += " (Unsafe)";
+                        }
+                    } catch (e) {
+                        btn.style.pointerEvents = 'none';
+                        btn.style.opacity = '0.5';
+                        btn.textContent += " (Invalid)";
+                    }
+                    
+                    buttonContainer.appendChild(btn);
+                });
             } else {
-                redirectLink.removeAttribute('href');
-                redirectLink.style.pointerEvents = 'none';
-                redirectLink.style.opacity = '0.5';
-                redirectLink.textContent = "Unsafe Link";
+                // 确保是安全协议才设置 href
+                if (target !== null) {
+                    redirectLink.href = finalUrl;
+                } else {
+                    redirectLink.removeAttribute('href');
+                    redirectLink.style.pointerEvents = 'none';
+                    redirectLink.style.opacity = '0.5';
+                    redirectLink.textContent = "Unsafe Link";
+                }
             }
         }
     }
