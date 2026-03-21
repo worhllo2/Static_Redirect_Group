@@ -178,6 +178,10 @@ window.RULES_DIRECT = {
         ],
         "expired_at": ""
     },
+    "/lin": {
+        "url": "https://blog.olinl.com",
+        "expired_at": ""
+    },
 
     // === 其他 ===
     "/pay": {
