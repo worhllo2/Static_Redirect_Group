@@ -5,7 +5,6 @@ window.RULES_DIRECT = {
         "expired_at": ""
     },
 
-    
     // === 主页 ===
     "/home": {
         "title": "选择主页",
@@ -15,7 +14,6 @@ window.RULES_DIRECT = {
         ],
         "expired_at": ""
     },
-
 
     // === AI 服务 ===
     "/ai": {
@@ -30,8 +28,6 @@ window.RULES_DIRECT = {
         ],
         "expired_at": ""
     },
-
-
 
     // === 开发工具与代理 ===
     "/p": {
@@ -57,36 +53,30 @@ window.RULES_DIRECT = {
         "expired_at": ""
     },
 
-
-
     // === 短链接导航 ===
     "/short": {
-             "title": "短链接导航",
-             "urls": [
-              { "name": "短链接 1", "url": "https://link.142588.xyz" },
-              { "name": "短链接 2", "url": "https://short.fung.us.ci" },
-              { "name": "短链接 3", "url": "https://w.142588.xyz/_url" }
-             ],
-             "expired_at": ""
-        },
-
-        
+        "title": "短链接导航",
+        "urls": [
+            { "name": "短链接 1", "url": "https://link.142588.xyz" },
+            { "name": "短链接 2", "url": "https://short.fung.us.ci" },
+            { "name": "短链接 3", "url": "https://w.142588.xyz/_url" }
+        ],
+        "expired_at": ""
+    },
 
     // === 实用工具 ===
     "/tool": {
-             "title": "工具集合",
-             "urls": [
-              { "name": "工具箱", "url": "https://tool.142588.xyz" },
-              { "name": "密码管理", "url": "https://pass.142588.xyz" },
-              { "name": "水印", "url": "https://watermark.142588.xyz" },
-              { "name": "图床", "url": "https://imgbed.142588.xyz" },
-              { "name": "云盘", "url": "https:/drive.142588.xyz" },
-              { "name": "虚拟地址", "url": "https://address.142588.xyz" }
-             ],
-             "expired_at": ""
-        },
-
-
+        "title": "工具集合",
+        "urls": [
+            { "name": "工具箱", "url": "https://tool.142588.xyz" },
+            { "name": "密码管理", "url": "https://pass.142588.xyz" },
+            { "name": "水印", "url": "https://watermark.142588.xyz" },
+            { "name": "图床", "url": "https://imgbed.142588.xyz" },
+            { "name": "云盘", "url": "https://drive.142588.xyz" },
+            { "name": "虚拟地址", "url": "https://address.142588.xyz" }
+        ],
+        "expired_at": ""
+    },
 
     // === 艺术设计 ===
     "/art": {
@@ -94,86 +84,114 @@ window.RULES_DIRECT = {
         "urls": [
             { "name": "主页", "url": "https://cover.142587.de5.net" },
             { "name": "主页（备）", "url": "https://cover.142588.xyz" },
-            { "name": "主页（备）", "url": "https://wallpaper.142588.xyz }
-            
+            { "name": "主页（备）", "url": "https://wallpaper.142588.xyz" }
         ],
         "expired_at": ""
     },
-
-
-    
-
-
 
     // === 社交与通信 ===
     "/mail": {
-        "url": "https://mail.142588.xyz",
+        "title": "邮件服务",
+        "urls": [
+            { "name": "邮箱登录", "url": "https://mail.142588.xyz" }
+        ],
         "expired_at": ""
     },
     "/push": {
-        "url": "https://push.142588.xyz",
+        "title": "推送服务",
+        "urls": [
+            { "name": "Push 推送", "url": "https://push.142588.xyz" }
+        ],
         "expired_at": ""
     },
     "/push2": {
-        "url": "https://wxpush.142588.xyz",
+        "title": "微信推送",
+        "urls": [
+            { "name": "WeChat Push", "url": "https://wxpush.142588.xyz" }
+        ],
         "expired_at": ""
     },
     "/wxdown": {
-        "url": "https://wxdown.fafu.indevs.in",
+        "title": "微信下载",
+        "urls": [
+            { "name": "微信下载站", "url": "https://wxdown.fafu.indevs.in" }
+        ],
         "expired_at": ""
     },
     "/piyao": {
-        "url": "https://wxpiyao.142588.xyz",
+        "title": "辟谣服务",
+        "urls": [
+            { "name": "微信辟谣", "url": "https://wxpiyao.142588.xyz" }
+        ],
         "expired_at": ""
     },
     "/discuss": {
-        "url": "https://discuss.142588.xyz",
-        "expired_at": ""
-    },
-
-    
-
-    // === 文字传输 ===
-    "/home": {
-        "title": "选择网址",
+        "title": "讨论社区",
         "urls": [
-            { "name": "主页", "url": "https://paste.142588.xyz" },
-            { "name": "主页（备）", "url": "https://paste.142587.de5.net" }
+            { "name": "论坛/讨论区", "url": "https://discuss.142588.xyz" }
         ],
         "expired_at": ""
     },
 
-
+    // === 文字传输 ===
+    "/paste": {
+        "title": "选择剪贴板",
+        "urls": [
+            { "name": "主线线路", "url": "https://paste.142588.xyz" },
+            { "name": "备用线路", "url": "https://paste.142587.de5.net" }
+        ],
+        "expired_at": ""
+    },
 
     "/search": {
-        "url": "https://search.142588.xyz",
+        "title": "搜索服务",
+        "urls": [
+            { "name": "综合搜索", "url": "https://search.142588.xyz" }
+        ],
         "expired_at": ""
     },
     "/news": {
-        "url": "https://news.fung.us.ci",
+        "title": "新闻资讯",
+        "urls": [
+            { "name": "新闻订阅", "url": "https://news.fung.us.ci" }
+        ],
         "expired_at": ""
     },
     "/notice": {
-        "url": "https://notice.142588.xyz",
+        "title": "公告栏",
+        "urls": [
+            { "name": "系统公告", "url": "https://notice.142588.xyz" }
+        ],
         "expired_at": ""
     },
     "/analytics": {
-        "url": "https://analytics.142588.xyz",
+        "title": "数据统计 1",
+        "urls": [
+            { "name": "访问统计", "url": "https://analytics.142588.xyz" }
+        ],
         "expired_at": ""
     },
     "/analytics2": {
-        "url": "https://radar.142588.xyz",
+        "title": "数据统计 2",
+        "urls": [
+            { "name": "运行雷达", "url": "https://radar.142588.xyz" }
+        ],
         "expired_at": ""
     },
 
-    
     // === 其他 ===
     "/pay": {
-        "url": "https://pay.142588.xyz",
+        "title": "支付赞助",
+        "urls": [
+            { "name": "扫码支付", "url": "https://pay.142588.xyz" }
+        ],
         "expired_at": ""
     },
     "/star": {
-        "url": "https://starer.142588.xyz",
+        "title": "星标项目",
+        "urls": [
+            { "name": "GitHub Star", "url": "https://starer.142588.xyz" }
+        ],
         "expired_at": ""
     }
 };
