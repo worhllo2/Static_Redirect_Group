@@ -144,29 +144,6 @@ window.RULES_DIRECT = {
     },
 
 
-    // === 导航 ===
-    "/home": {
-        "title": "选择导航页",
-        "urls": [
-            { "name": "主页", "url": "https://nav.142588.xyz" },
-            { "name": "主页（备）", "url": "https://nav.cro.cc.cd" }
-        ],
-        "expired_at": ""
-    },
-
-
-
-
-    // === 新闻资讯 ===
-    "/home": {
-        "title": "点击跳转",
-        "urls": [
-            { "name": "主页", "url": "https://home.142588.xyz" },
-            { "name": "主页（备）", "url": "https://home.142587.de5.net" }
-        ],
-        "expired_at": ""
-    },
-
 
     "/search": {
         "url": "https://search.142588.xyz",
@@ -188,8 +165,6 @@ window.RULES_DIRECT = {
         "url": "https://radar.142588.xyz",
         "expired_at": ""
     },
-
-
 
     
     // === 其他 ===
