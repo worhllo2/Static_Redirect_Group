@@ -255,26 +255,24 @@ export default {
       const content = new TextDecoder('utf-8').decode(bytes);
       const sha = fileData.sha;
 
-      // 提取 JSON 部分: window.RULES_INTERMEDIATE = {...};
-      const jsonStart = content.indexOf('{');
-      const jsonEnd = content.lastIndexOf('}');
+      // 提取 JSON 部分: window.RULES_DIRECT = {...}; 或 window.RULES_INTERMEDIATE = {...};
+      // 提取 JSON 部分: window.RULES_DIRECT = {...}; 或 window.RULES_INTERMEDIATE = {...};
+      // 更加健壮的正则表达式提取方式
+      const jsonMatch = content.match(/\{[\s\S]*\}/);
       
-      if (jsonStart === -1 || jsonEnd === -1) {
-        return Response.json({ error: "Failed to parse file content" }, { 
+      if (!jsonMatch) {
+        return Response.json({ error: "Failed to parse file content: No JSON object found" }, { 
             status: 500,
             headers: { "Access-Control-Allow-Origin": "*" }
         });
       }
 
-      const jsonStr = content.substring(jsonStart, jsonEnd + 1);
+      const jsonStr = jsonMatch[0];
       let rules;
       try {
-        // 使用 Function 而不是 eval 来解析 JS 对象字面量 (如果它是标准 JSON 最好，但如果是 JS 对象可能包含无引号键)
-        // 既然我们生成的文件是 JSON.stringify 出来的，它应该是标准 JSON。
         rules = JSON.parse(jsonStr);
       } catch (e) {
-        // 如果 JSON.parse 失败，尝试更宽松的解析或报错
-        return Response.json({ error: "File content is not valid JSON" }, { 
+        return Response.json({ error: "File content is not valid JSON. Error: " + e.message }, { 
             status: 500,
             headers: { "Access-Control-Allow-Origin": "*" }
         });
@@ -297,7 +295,10 @@ export default {
 
       // 5. 序列化并提交
       const newJsonStr = JSON.stringify(rules, null, 4);
-      const newContent = `window.RULES_INTERMEDIATE = ${newJsonStr};\n`;
+      // 根据原文件内容判断使用哪个变量名
+      const varNameMatch = content.match(/window\.RULES_[A-Z]+/);
+      const varName = varNameMatch ? varNameMatch[0] : "window.RULES_INTERMEDIATE";
+      const newContent = `${varName} = ${newJsonStr};\n`;
       
       // 正确处理 UTF-8 编码: String -> Uint8Array -> Base64
       const encoder = new TextEncoder();
